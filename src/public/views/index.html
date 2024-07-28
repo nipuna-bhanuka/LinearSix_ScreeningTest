@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Google Calendar Busy Intervals</title>
+    <link rel="stylesheet" type="text/css" href="../css/app.css">
+</head>
+<body>
+    <h1>Check Google Calendar Busy Intervals</h1>
+    <form action="/" method="post">
+        <label for="calendarId">Calendar ID:</label>
+        <input type="text" id="calendarId" name="calendarId" required><br><br>
+
+        <label for="sdate">Start Date and Time (YYYY-MM-DDTHH:MM:SSZ):</label>
+        <input type="text" id="sdate" name="sdate" required><br><br>
+
+        <label for="edate">End Date and Time (YYYY-MM-DDTHH:MM:SSZ):</label>
+        <input type="text" id="edate" name="edate" required><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <% if (typeof busyIntervals !== 'undefined' && busyIntervals.length > 0) { %>
+        <h2>Busy Intervals</h2>
+        <ul>
+            <% busyIntervals.forEach(function(interval) { %>
+                <li><%= interval.start %> - <%= interval.end %></li>
+            <% }); %>
+        </ul>
+    <% } else if (typeof busyIntervals !== 'undefined') { %>
+        <h4>No busy intervals found within the specified date range.</h4>
+    <% } %>
+</body>
+</html>
